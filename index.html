@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Snake App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+
+    <link href="./styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Get Started view -->
+
+        <div class="row" id="getStartedContainer">
+            <div class="col-md-12">
+                <div class="mx-auto card card-intro">
+                    <div class="card-body">
+                        <h5 class="card-title">Create interactive greeting cards</h5>
+                        <p class="card-text">
+                            This application will let you create beautiful cards for your dear ones in very interactive
+                            and
+                            user-friendly way.
+                            Let's get started.
+                        </p>
+                        <button id="btnGetStarted" class="btn btn-primary float-right">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-none" id="frameContainer">
+            <div class="col-12">
+                <div class="frameContainer">
+                    <div class="row">
+                        <div class="col-4">
+                            Frame 1
+                        </div>
+                        <div class="col-4">
+                            Frame 2
+                        </div>
+                        <div class="col-4">
+                            Frame 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./scripts/jquery.jqtemplate-0.4.min.js"></script>
+    <script src="./core/onboard/index.js"></script>
+    <script src="./core/design/index.js"></script>
+    <script src="./core/app.js"></script>
+    <script src="./bootstrap.js"></script>
+    <script src="./node_modules/fabric/dist/fabric.min.js"></script>
+</body>
+
+</html>

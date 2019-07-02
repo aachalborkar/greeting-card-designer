@@ -1,0 +1,23 @@
+{
+  "name": "snakeapp",
+  "version": "1.0.0",
+  "description": "A basic snake game to implement core JS, fabric js and mvc features",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8000"
+  },
+  "keywords": [
+    "js",
+    "fabricjs",
+    "mvc"
+  ],
+  "author": "Sumit Parakh",
+  "license": "MIT",
+  "dependencies": {
+    "fabric": "^3.2.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
