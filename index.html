@@ -13,11 +13,9 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <!-- Get Started view -->
-
-        <div class="row" id="getStartedContainer">
-            <div class="col-md-12">
+    <div class="container-fluid" id="getStartedContainer">
+        <div class="row">
+            <div class="col-12">
                 <div class="mx-auto card card-intro">
                     <div class="card-body">
                         <h5 class="card-title">Create interactive greeting cards</h5>
@@ -32,20 +30,13 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row d-none" id="frameContainer">
-            <div class="col-12">
-                <div class="frameContainer">
-                    <div class="row">
-                        <div class="col-4">
-                            Frame 1
-                        </div>
-                        <div class="col-4">
-                            Frame 2
-                        </div>
-                        <div class="col-4">
-                            Frame 3
-                        </div>
+    <div class="container-fluid d-none" id="frameContainer">
+        <div class="col-12">
+            <div class="frameContainer">
+                <div class="row" id="iframeListContainer">
+                    <div class="col-4" jqloop="{object: 'val', array: $this.list}" jqtext="$this.val.name">
                     </div>
                 </div>
             </div>
@@ -53,6 +44,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./scripts/jquery.jqtemplate-0.4.min.js"></script>
+    <script src="./core/constants.js"></script>
     <script src="./core/onboard/index.js"></script>
     <script src="./core/design/index.js"></script>
     <script src="./core/app.js"></script>

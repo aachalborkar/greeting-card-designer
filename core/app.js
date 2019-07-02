@@ -2,7 +2,7 @@
 
 function Application() {
 
-    var _app = this;
+    var app = this;
     this.onBoardObj = new Onboard();
 
     this.start = function () {
@@ -11,8 +11,8 @@ function Application() {
 
     this.initialize = function () {
         document.getElementById('btnGetStarted').addEventListener('click', function (event) {
-            _app.hideGetStartedContainer();
-            _app.onBoardObj.initialize(event);
+            app.hideGetStartedContainer();
+            app.onBoardObj.initialize(event);
         });
     }
 

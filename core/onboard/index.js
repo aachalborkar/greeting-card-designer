@@ -1,11 +1,28 @@
 function Onboard() {
+
+    var jqTemplateOptions = {
+        inplace: true,
+        root: '#iframeListContainer'
+    };
+
+    /**
+     * Initialize Onboarding page
+     */
     this.initialize = function () {
         this.showFrameContainer();
+        this.renderFrameList();
     }
 
+    /**
+     * Render Frame List
+     */
     this.renderFrameList = function () {
-        $("#frameContainer .frameContainer").jqtemplate({
-            list: ["So", "Freakin", "AWESOME!"]
+        var jqFrameModal = {
+            list: AppData.FrameList,
+        }
+
+        $().ready(function () {
+            $("#frameContainer").jqtemplate(jqFrameModal, jqTemplateOptions);
         });
     }
 
