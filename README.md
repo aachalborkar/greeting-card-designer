@@ -6,7 +6,7 @@ Run <b>npm install</b> from the root of this project. It will install necessary 
 
 <b>postinstall</b> npm hook will trigger application start command and will open the app automatically.
 
-For more details check <b>scripts</b> section of [package.json](package.json)
+For more details check <b>scripts</b> section of [package.json](package.json#L6)
 
 ## Run Application
 
