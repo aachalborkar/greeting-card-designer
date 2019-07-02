@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Basic Snake App</title>
+    <title>Create Greeting Card Online</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
 
@@ -13,6 +13,11 @@
 </head>
 
 <body>
+
+    <canvas id="greetingCanvas">
+
+    </canvas>
+
     <div class="container-fluid" id="getStartedContainer">
         <div class="row">
             <div class="col-12">
@@ -35,13 +40,20 @@
     <div class="container-fluid d-none" id="frameContainer">
         <div class="col-12">
             <div class="frameContainer">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center"><b><u>Select Any Frame</u></b></div><br />
+                        <!-- <hr /> -->
+                    </div>
+                </div>
                 <div class="row" id="iframeListContainer">
-                    <div class="col-4" jqloop="{object: 'val', array: $this.list}" jqtext="$this.val.name">
+                    <div class="col-4 frame-col" jqloop="{object: 'val', array: $this.list}" jqtext="$this.val.name">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./scripts/jquery.jqtemplate-0.4.min.js"></script>
     <script src="./core/constants.js"></script>
@@ -49,7 +61,10 @@
     <script src="./core/design/index.js"></script>
     <script src="./core/app.js"></script>
     <script src="./bootstrap.js"></script>
-    <script src="./node_modules/fabric/dist/fabric.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.2.0/fabric.min.js"
+        integrity="sha256-tzYSKRkV1Ga9YrVBiNHG44eEQyRcwtNrqOMh2+CTlec=" crossorigin="anonymous"></script>
+    <!-- <script src="./node_modules/fabric/dist/fabric.min.js"></script> -->
+    <script src="./core/canvas.js"></script>
 </body>
 
 </html>

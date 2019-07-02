@@ -1,4 +1,16 @@
 .card-intro {
-    max-width: 500px;
-    margin-top: 100px;
+  max-width: 500px;
+  margin-top: 100px;
+}
+
+#frameContainer {
+  margin-top: 120px;
+}
+
+.frame-col {
+  box-shadow: 0px 0px 4px -2px black;
+  padding: 86px;
+  text-align: center;
+  height: auto;
+  vertical-align: middle;
 }

@@ -2,9 +2,9 @@
 var AppData = {};
 Object.defineProperty(AppData, 'FrameList', {
     value: [
-        { name: 'Frame 1' },
-        { name: 'Frame 2' },
-        { name: 'Frame 3' }
+        { name: '300x600' },
+        { name: '600x300' },
+        { name: '200x400' }
     ],
     writable: false,
     configurable: false
