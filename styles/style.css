@@ -14,3 +14,8 @@
   height: auto;
   vertical-align: middle;
 }
+
+
+body.design-mode {
+  background-color: #fdfdfd;
+}

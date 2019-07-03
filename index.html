@@ -24,11 +24,13 @@
                         <tbody>
                             <tr>
                                 <td title="Draw a rectangle">
-                                    <canvas draggable="true" name="rectangle" id="cRect" width="48" height="52"
+                                    <canvas draggable="true" class="toolbar-control" name="rectangle" id="cRect"
+                                        width="48" height="52"
                                         ondragstart="canvasUtility.onToolbarDragStart(event);"></canvas>
                                 </td>
                                 <td title="Draw a triangle">
-                                    <canvas draggable="true" name="triangle" id="cTra" width="48" height="52"
+                                    <canvas draggable="true" class="toolbar-control" name="triangle" id="cTra"
+                                        width="48" height="52"
                                         ondragstart="canvasUtility.onToolbarDragStart(event);"></canvas>
                                 </td>
                             </tr>
@@ -84,8 +86,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./scripts/jquery.jqtemplate-0.4.min.js"></script>
     <script src="./core/constants.js"></script>
-    <script src="./core/onboard/index.js"></script>
-    <script src="./core/design/index.js"></script>
+    <script src="./core/onboard/onboard.js"></script>
+    <script src="./core/design/design.js"></script>
     <script src="./core/app.js"></script>
     <script src="./bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.2.0/fabric.min.js"
