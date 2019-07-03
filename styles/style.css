@@ -15,7 +15,17 @@
   vertical-align: middle;
 }
 
-
 body.design-mode {
   background-color: #fdfdfd;
+}
+
+.get-started {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.mt-10 {
+  margin-top: 10rem;
 }
