@@ -17,13 +17,35 @@ function Onboard() {
      * Render Frame List
      */
     this.renderFrameList = function () {
+        var _this = this;
         var jqFrameModal = {
             list: AppData.FrameList,
+            onFrameSelect: function (event) {
+                _this.initializeDesign();
+                canvasUtility.init(event.width, event.height);
+            },
+            onHover: function () {
+                $(this).css("background-color", "rgba(213, 225, 239, 0.25)");
+                $(this).css("cursor", "pointer");
+            },
+            onLeave: function () {
+                $(this).css("background-color", "white");
+                $(this).css("cursor", "default");
+            },
         }
 
         $().ready(function () {
             $("#frameContainer").jqtemplate(jqFrameModal, jqTemplateOptions);
         });
+    }
+
+    this.initializeDesign = function () {
+        this.hideFrameContainer();
+        this.enableDesignMode();
+    }
+
+    this.enableDesignMode = function () {
+        document.getElementById('designContainer').classList.remove('d-none');
     }
 
     this.showFrameContainer = function () {
