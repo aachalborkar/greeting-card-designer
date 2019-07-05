@@ -1,3 +1,12 @@
 .toolbar-control {
-    cursor: all-scroll;
+  cursor: all-scroll;
+}
+
+i[data-type="toolbar"] {
+  cursor: all-scroll;
+}
+
+input[name="toolbar-img-file"] {
+  position: fixed;
+  top: -100em;
 }
