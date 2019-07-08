@@ -49,7 +49,6 @@ function CanvasUtility() {
     };
 
     this.init = function () {
-
         var queryString = utils.searchToObject();
         var matches = /([\d]+)x([\d]+)/gm.exec(queryString.dimention);
 
