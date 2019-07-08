@@ -12,7 +12,7 @@ CardController.prototype = {
 
     bindEventHandlers: function () {
         this.view.$window.addEventListener('load', this.listCards.bind(this));
-        this.view.$createCardForm.addEventListener('submit', this.addNewCard.bind(this));
+        this.view.$createCardForm.addEventListener('submit', this.view.addNewCard.bind({ controller: this, callback: this.addNewCard }));
         this.view.$frameListElement.addEventListener('change', this.onFrameSelectionChange.bind(this));
         return this;
     },
@@ -26,16 +26,11 @@ CardController.prototype = {
     },
 
 
-    addNewCard: function (event) {
-        var formData = $(event.target).serializeArray();
-
-        var cardObject = this.createCardObject(formData);
-
+    addNewCard: function (formData) {
+        var cardObject = this.controller.createCardObject(formData);
         cardObject['created_at'] = (new Date()).toDateString();
-
-        this.model.saveCard(cardObject);
-        this.view.designCard();
-        event.preventDefault();
+        this.controller.model.saveCard(cardObject);
+        return cardObject;
     },
 
     listCards: function (event) {
@@ -48,13 +43,6 @@ CardController.prototype = {
             return this.view.hideFrameImagePreview();
         }
         return this.view.showFrameImagePreview(value);
-
-        var previewImg = document.querySelector('[data-name=frame-preview-img]');
-
-        if (previewImg) {
-            previewImg.setAttribute('src', 'https://dummyimage.com/' + value + '/f2f4f5/525252');
-            previewBlock.classList.remove('d-none');
-        }
     },
 
 }

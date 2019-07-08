@@ -1,5 +1,4 @@
 var CardView = function () {
-    this.addCardEvent = new CustomEvent('ADD_CARD');
     this.init();
 }
 
@@ -37,22 +36,18 @@ CardView.prototype = {
         document.querySelector('[data-name=frame-preview-block]').classList.add('d-none');
     },
 
-    listCards: function (event) {
-        // console.log('list cards', event);
+    addNewCard: function (event) {
+        var formData = $(event.target).serializeArray();
+        var cardObject = this.callback(formData);
+        window.location.href = "design.html?" + $.param(cardObject);
+        event.preventDefault();
     },
 
     displayGetStartedBlock: function () {
         var getStartedBlock = document.querySelector('[data-name=get_started_block]');
         if (getStartedBlock instanceof HTMLElement) {
             getStartedBlock.classList.remove('d-none');
-            // document.querySelector('[data-name=btn-create-card]').addEventListener('click', ());
         }
-    },
-
-    designCard: function () {
-
-        //TODO replace cards.html by design.html
-        window.location.href = "cards.html?" + $.param(cardObject);
     },
 
     renderCardData: function (data) {
@@ -66,7 +61,6 @@ CardView.prototype = {
 
     showCardList: function (data) {
         this.show(document.querySelector('[data-name=card-list]'));
-
         var cardListHtml = document.querySelector('[data-card-list-view]');
         this.renderView('cardListTemplate', cardListHtml.innerText, data, '[data-name=card-items]');
     },
