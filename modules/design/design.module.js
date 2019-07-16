@@ -1,1 +1,2 @@
-var designController = new DesignController(new DesignModal(), new DesignView());
+var designModal = new DesignModal();
+var designController = new DesignController(designModal, new DesignView(designModal));

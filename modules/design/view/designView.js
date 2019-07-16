@@ -1,25 +1,9 @@
 var DesignView = (function () {
 
     var currentFrameObject = null;
-    var toolbarProps = {
-        rectangle: {
-            x: 0,
-            y: 0,
-            width: 48,
-            height: 52
-        },
-        triangle: {
-            width: 48,
-            height: 52,
-            position: { x: 24, y: 0 },
-            line1: { x: 48, y: 52 },
-            line2: { x: 0, y: 52 },
-            line3: { x: 24, y: 0 }
-        }
-    };
 
-
-    function DesignView() {
+    function DesignView(designModal) {
+        this.designModal = designModal;
         this.init();
     }
 
@@ -70,7 +54,7 @@ var DesignView = (function () {
         },
 
         drawRectangle: function (left, top) {
-            var rect = toolbarProps.rectangle;
+            var rect = this.designModal.getToolbarProperties().rectangle;
             this.getCurrentFrame().add(
                 new fabric.Rect({
                     width: rect.width,
@@ -83,8 +67,7 @@ var DesignView = (function () {
         },
 
         drawTriangle: function (left, top) {
-            var tri = toolbarProps.triangle;
-
+            var tri = this.designModal.getToolbarProperties().triangle;
             this.getCurrentFrame().add(
                 new fabric.Triangle({
                     width: tri.width,
