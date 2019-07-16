@@ -37,29 +37,11 @@
   <!-- Custom styles for this template -->
   <link href="./styles/offcanvas.css" rel="stylesheet" />
   <link href="./styles/style.css" rel="stylesheet" />
-
-  <script type="text/html" data-card-list-view>
-    <div class="col-3">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">${card_name}</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title"><small class="text-muted">${dimention}</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Created at: <h6>${created_at}</h6>
-            </li>
-          </ul>
-          <a href="design.html?card_name=${card_name}&dimention=${dimention}" class="btn btn-lg btn-block btn-primary">Edit</a>
-        </div>
-      </div>
-    </div>
-  </script>
 </head>
 
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-0" href="/">Greeting Card Maker</a>
+    <a class="navbar-brand mr-auto mr-lg-0" href="#">Greeting Card Maker</a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -160,15 +142,14 @@
   <script src="./scripts/offcanvas.js"></script>
 
   <script src="./scripts/jquery.tmpl.js"></script>
+  <script src="./core/utils.js"></script>
+  <script src="./core/constants.js"></script>
+  <script src="./core/localStorage.js"></script>
+  <script src="./core/card.js"></script>
+  <script src="./core/app.js"></script>
+  <script src="./bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.2.0/fabric.min.js"
     integrity="sha256-tzYSKRkV1Ga9YrVBiNHG44eEQyRcwtNrqOMh2+CTlec=" crossorigin="anonymous"></script>
-
-  <script src="./core/constants.js"></script>
-  <script src="./modules/cards/view/cardView.js"></script>
-  <script src="./modules/cards/controller/cardController.js"></script>
-  <script src="./modules/cards/modal/cardModal.js"></script>
-  <script src="./modules/cards/card.module.js"></script>
-
 </body>
 
 </html>

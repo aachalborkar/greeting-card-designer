@@ -48,5 +48,5 @@ var LocalStorageKeys = {};
 constantUtil
     // .createConstant(LocalStorageKeys, 'SAVE_FRAMES', 'localstorage_SAVE_FRAMES')
     .createConstant(LocalStorageKeys, 'GET_FRAMES', 'frameList')
-    .createConstant(LocalStorageKeys, 'CARD_LIST', 'cardsList');
+    .createConstant(LocalStorageKeys, 'GET_CARDS', 'cardsList');
     // .createConstant(LocalStorageKeys, 'SAVE_CARDS', 'localstorage_SAVE_CARDS');
