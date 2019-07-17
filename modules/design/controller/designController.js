@@ -12,8 +12,13 @@ var DesignController = (function () {
     DesignController.prototype = {
 
         init: function () {
-            this.view.$window.addEventListener('load', this.initializeDesign.bind(this));
+            document.addEventListener('INIT_DESIGN', this.initializeDesign.bind(this));
+            // this.view.$window.addEventListener('load', this.initializeDesign.bind(this));
             this.applyToolbarEvents();
+        },
+
+        initializeDesign: function (event) {
+            console.log({ event });
         },
 
         applyToolbarEvents: function () {
@@ -29,11 +34,12 @@ var DesignController = (function () {
         },
 
         initializeDesign: function (event) {
-            var searchObject = utilsObj.searchToObject();
-            var designMode = searchObject.card_name && searchObject.dimention && this.isValidDimention(searchObject.dimention);
-            if (designMode) {
-                this.view.initializeDesign(searchObject);
-            }
+            console.log('initializeDesign', { event });
+            // var searchObject = utilsObj.searchToObject();
+            // var designMode = searchObject.card_name && searchObject.dimention && this.isValidDimention(searchObject.dimention);
+            // if (designMode) {
+            //     this.view.initializeDesign(searchObject);
+            // }
         },
 
 

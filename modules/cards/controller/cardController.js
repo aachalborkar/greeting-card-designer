@@ -12,8 +12,9 @@ CardController.prototype = {
 
     bindEventHandlers: function () {
         this.view.$window.addEventListener('load', this.listCards.bind(this));
-        this.view.$createCardForm.addEventListener('submit', this.view.addNewCard.bind({ controller: this, callback: this.addNewCard }));
-        this.view.$frameListElement.addEventListener('change', this.onFrameSelectionChange.bind(this));
+        $(document).on('ADD_NEW_CARD', this.addNewCard.bind(this));
+        // this.view.$createCardForm.addEventListener('submit', this.view.addNewCard.bind({ controller: this, callback: this.addNewCard }));
+        // this.view.$frameListElement.addEventListener('change', this.onFrameSelectionChange.bind(this));
         return this;
     },
 
@@ -26,11 +27,11 @@ CardController.prototype = {
     },
 
 
-    addNewCard: function (formData) {
-        var cardObject = this.controller.createCardObject(formData);
+    addNewCard: function (event) {
+        var cardObject = this.createCardObject(event.detail.card_data);
         cardObject['created_at'] = (new Date()).toDateString();
-        this.controller.model.saveCard(cardObject);
-        return cardObject;
+        this.model.saveCard(cardObject);
+        document.dispatchEvent(new CustomEvent('ON_NEW_CARD_ADDED', { detail: cardObject }));
     },
 
     listCards: function (event) {

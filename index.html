@@ -38,7 +38,7 @@
   <link href="./styles/offcanvas.css" rel="stylesheet" />
   <link href="./styles/style.css" rel="stylesheet" />
 
-  <script type="text/html" data-card-list-view>
+  <script type="text/x-jquery-tmpl" data-card-list-view>
     <div class="col-3">
       <div class="card mb-4 shadow-sm">
         <div class="card-header">
@@ -50,110 +50,56 @@
             <li>Created at: <h6>${created_at}</h6>
             </li>
           </ul>
-          <a href="design.html?card_name=${card_name}&dimention=${dimention}" class="btn btn-lg btn-block btn-primary">Edit</a>
+          <button data-card-name="${card_name}" data-dimension="${dimention}" data-name="edit_card" class="btn btn-lg btn-block btn-primary">Edit</button>
         </div>
       </div>
     </div>
   </script>
+
+  <script type="text/html" data-key="header_script">
+
+  </script>
+  <script type="text/html" data-key="design_header">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a href="index.html" class="mr-4"><i class="fa fa-arrow-left"></i></a>
+        <a class="navbar-brand mr-auto mr-lg-0" href="#">Card Editor</a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav px-3 ml-auto">
+
+            </ul>
+        </div>
+    </nav>
+  </script>
+
+  <script type="text/html" data-key="header_info_script">
+  </script>
+
+  <script type="text/html" data-key="content_script">
+  </script>
+
+  <script type="text/html" data-key="new_card_script">
+  </script>
+
 </head>
 
 <body class="bg-light">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-0" href="/">Greeting Card Maker</a>
-    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav px-3 ml-auto">
-        <li class="nav-item text-nowrap">
-          <button class="btn btn-primary my-2 my-sm-0" type="button" data-toggle="modal"
-            data-target=".bd-new-card-modal-xl">
-            <i class="fas fa-plus"></i>&nbsp; New Card
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <span data-key="header">
+  </span>
 
-  <div class="nav-scroller bg-white shadow-sm">
-    <nav class="nav nav-underline">
-      <a class="nav-link active" data-name="cardsMenu" href="#">
-        Cards
-        <span class="badge badge-pill bg-light align-text-bottom" data-card-count></span>
-      </a>
-    </nav>
-  </div>
+  <span data-key="card_count">
+  </span>
 
-  <main role="main" class="container-fluid">
-    <div data-name="addNewCard_container">
-      <div class="get-started text-center mt-10 d-none" data-name="get_started_block">
-        <span class="mb-4">
-          <i class="fas fa-hourglass-start fa-5x"></i>
-        </span>
-        <p class="mb-3 mt-5 lead font-weight-normal">You haven't created any card yet? Let's get started.</p>
-        <button class="mt-5 btn btn-lg btn-primary btn-block" type="button" data-toggle="modal"
-          data-target=".bd-new-card-modal-xl">
-          Get Started
-        </button>
-      </div>
-
-
-      <div class="d-none mt-4" data-name="card-list">
-        <div class="row" data-name="card-items">
-        </div>
-      </div>
-    </div>
+  <main role="main" data-key="content" class="container-fluid">
   </main>
 
-  <div class="modal fade bd-new-card-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <form data-name="frmCreateCard" method="GET" action="">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create New Card</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Card Name:
-                <span class="text-danger">*</span>
-              </label>
-              <input required autofocus type="text" class="form-control" name="card_name" placeholder="Enter card name">
-            </div>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Select Any Frame:
-                <span class="text-danger">*</span>
-              </label>
-              <select required class="form-control" data-name="frameList" name="dimention">
-                <option value="">--Select Frame--</option>
-                <option value="500x600">500x600</option>
-                <option value="600x300">600x300</option>
-                <option value="200x400">200x400</option>
-                <option value="800x300">800x300</option>
-              </select>
-            </div>
-            <div class="form-group d-none" data-name="frame-preview-block">
-              <label for="recipient-name" class="col-form-label">Preview:</label>
-              <div class="text-center">
-                <img class="img-fluid" data-name="frame-preview-img" />
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" data-name="btn-create-card" class="btn btn-primary">Create Card</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  <span data-key="new_card">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  </span>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"
     integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
@@ -164,10 +110,17 @@
     integrity="sha256-tzYSKRkV1Ga9YrVBiNHG44eEQyRcwtNrqOMh2+CTlec=" crossorigin="anonymous"></script>
 
   <script src="./core/constants.js"></script>
+
   <script src="./modules/cards/view/cardView.js"></script>
   <script src="./modules/cards/controller/cardController.js"></script>
   <script src="./modules/cards/modal/cardModal.js"></script>
   <script src="./modules/cards/card.module.js"></script>
+
+  <script src="./modules/core/utils.js"></script>
+  <script src="./modules/design/view/designView.js"></script>
+  <script src="./modules/design/controller/designController.js"></script>
+  <script src="./modules/design/model/designModal.js"></script>
+  <script src="./modules/design/design.module.js"></script>
 
 </body>
 
