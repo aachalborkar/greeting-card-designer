@@ -11,11 +11,13 @@ CardController.prototype = {
     },
 
     bindEventHandlers: function () {
-        this.view.$window.addEventListener('load', this.listCards.bind(this));
         $(document).on('ADD_NEW_CARD', this.addNewCard.bind(this));
-        // this.view.$createCardForm.addEventListener('submit', this.view.addNewCard.bind({ controller: this, callback: this.addNewCard }));
-        // this.view.$frameListElement.addEventListener('change', this.onFrameSelectionChange.bind(this));
-        return this;
+        $(document).on('GET_CARDS', this.getCards.bind(this));
+    },
+
+
+    getCards: function (event) {
+        event.detail.callback(this.model.getCards());
     },
 
     createCardObject: function (cardDataArray) {
@@ -26,16 +28,11 @@ CardController.prototype = {
         return cardObject;
     },
 
-
     addNewCard: function (event) {
         var cardObject = this.createCardObject(event.detail.card_data);
         cardObject['created_at'] = (new Date()).toDateString();
         this.model.saveCard(cardObject);
         document.dispatchEvent(new CustomEvent('ON_NEW_CARD_ADDED', { detail: cardObject }));
-    },
-
-    listCards: function (event) {
-        this.view.renderCardData(this.model.getCards());
     },
 
     onFrameSelectionChange: function () {

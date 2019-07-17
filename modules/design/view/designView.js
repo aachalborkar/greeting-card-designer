@@ -2,6 +2,9 @@ var DesignView = (function () {
 
     var currentFrameObject = null;
 
+    var isHeaderLoaded = false;
+    var isEditorLoaded = false;
+
     function DesignView(designModal) {
         this.designModal = designModal;
         this.init();
@@ -15,14 +18,67 @@ var DesignView = (function () {
 
         getViewElementsWithEvents: function () {
             this.$window = window;
-            this.$toolbarControls = document.querySelectorAll('[data-type=toolbar]');
+            document.addEventListener('INIT_DESIGN', this.initializeDesign.bind(this));
         },
 
-        initializeDesign: function (searchObject) {
-            document.getElementById('designContainer').classList.remove('d-none');
+        initializeDesign: function (event) {
+            this.loadStyles();
 
-            var matches = /([\d]+)x([\d]+)/gm.exec(searchObject.dimention);
-            this.drawFrame(matches[1], matches[2]);
+            if (!isHeaderLoaded) {
+                $('[data-key=header_script]').load('./modules/design/view/header.html', this.initHeader.bind(this));
+            }
+
+            if (!isEditorLoaded) {
+                $('[data-key="content_script"]').load('./modules/design/view/content.html', this.initEditor.bind({ _this: this, event: event }));
+            }
+        },
+
+        applyToolbarEvents: function () {
+            if (this.$toolbarControls.length > 0) {
+                this.$toolbarControls.forEach(function (value) {
+                    value.addEventListener('dragstart', this.onToolbarDragStart.bind(this))
+                }.bind(this));
+            }
+        },
+
+
+        onToolbarDragStart: function (event) {
+            var target = event.target ? event.target : event.currentTarget;
+            if (!target) {
+                return;
+            }
+            var controlData = {
+                name: target.dataset.name
+            };
+            event.dataTransfer.setData("control_data", JSON.stringify(controlData));
+        },
+
+        loadStyles: function (event) {
+            $("<link/>", {
+                rel: "stylesheet",
+                type: "text/css",
+                href: "./styles/canvas.css"
+            }).appendTo("head");
+        },
+
+        initEditor: function (response, status, xhr) {
+            var contentHtml = document.querySelector('[data-key=content_script]');
+            document.querySelector('[data-key=content]').innerHTML = '';
+            this._this.renderView('designContent', contentHtml.innerText, {}, '[data-key=content]');
+            document.getElementById('designContainer').classList.remove('d-none');
+            var matches = /([\d]+)x([\d]+)/gm.exec(this.event.detail.dimension);
+            this._this.drawFrame(matches[1], matches[2]);
+
+            this._this.$toolbarControls = document.querySelectorAll('[data-type=toolbar]');
+            this._this.applyToolbarEvents();
+        },
+
+        initHeader: function (response, status, xhr) {
+            var headerHtml = document.querySelector('[data-key=header_script]');
+            if (!isHeaderLoaded || !headerHtml.innerHTML.trim()) {
+                isHeaderLoaded = true;
+                this.renderView('designHeader', headerHtml.innerText, {}, '[data-key=header]');
+            }
         },
 
         drawFrame: function (width, height) {
@@ -109,22 +165,27 @@ var DesignView = (function () {
             this.getCurrentFrame().add(circle);
         },
 
+
+        addImageToFrame: function (fileReaderEvent) {
+            var data = fileReaderEvent.target.result;
+            fabric.Image.fromURL(data, function (img) {
+                var oImg = img.set({ left: this.left, top: this.top }).scale(0.9);
+                this._this.getCurrentFrame().add(oImg).renderAll();
+            }.bind(this));
+        },
+
+        onFileSelected: function (event) {
+            var target = event.target ? event.target : event.currentTarget;
+            var reader = new FileReader();
+            reader.onload = this._this.addImageToFrame.bind({ _this: this._this, left: this.left, top: this.top });
+            reader.readAsDataURL(target.files[0]);
+        },
+
         drawImage: function (left, top) {
             var input = document.createElement("input");
             input.setAttribute("type", "file");
             input.setAttribute("accept", "image/*");
-            $(input).on('change', (function (event) {
-                var target = event.target ? event.target : event.currentTarget;
-                var reader = new FileReader();
-                reader.onload = function (f) {
-                    var data = f.target.result;
-                    fabric.Image.fromURL(data, function (img) {
-                        var oImg = img.set({ left: left, top: top }).scale(0.9);
-                        this.getCurrentFrame().add(oImg).renderAll();
-                    }.bind(this));
-                }.bind(this);
-                reader.readAsDataURL(target.files[0]);
-            }).bind(this));
+            $(input).on('change', this.onFileSelected.bind({ _this: this, left: left, top: top }));
             if (input.click) {
                 input.click();
             } else {
@@ -166,6 +227,11 @@ var DesignView = (function () {
                 default:
                     break;
             }
+        },
+
+        renderView: function (templateName, htmlString, data, appendToElementSelector) {
+            $.template(templateName, htmlString.trim());
+            $.tmpl(templateName, data).appendTo(appendToElementSelector);
         }
     }
 
