@@ -3,7 +3,6 @@ var CardView = (function () {
 
     function CardView() {
         this.init();
-        // constructor
     }
 
 
@@ -17,14 +16,11 @@ var CardView = (function () {
             this.$window = window;
             this.$frameListElement = document.querySelector('[data-name=frameList]');
             document.addEventListener('ON_NEW_CARD_ADDED', this.onNewCardAdded.bind(this));
-            // console.log(this.listCards);
             window.addEventListener('load', this.listCards.bind(this));
             return this;
         },
 
-
         listCards: function (event) {
-            console.log({ event });
             var eve = new CustomEvent('GET_CARDS', {
                 detail: { callback: this.renderCardData.bind(this) }
             });
@@ -86,8 +82,12 @@ var CardView = (function () {
             this.initializeDesign(event.detail);
         },
 
+        onScriptLoaded: function (event) {
+            document.dispatchEvent(new CustomEvent('INIT_DESIGN', { detail: this.detail }));
+        },
+
         initializeDesign: function (detail) {
-            document.dispatchEvent(new CustomEvent('INIT_DESIGN', { detail: detail }));
+            document.dispatchEvent(new CustomEvent('LOAD_MODULE', { detail: { name: 'DESIGN_MODULE', callback: this.onScriptLoaded.bind({ detail: detail }) } }));
         },
 
         addNewCard: function (event) {
@@ -98,8 +98,6 @@ var CardView = (function () {
             document.dispatchEvent(eve);
             event.preventDefault();
         },
-
-        // triggerA
 
         displayGetStartedBlock: function () {
             $('[data-key="content_script"]').load('./modules/cards/view/content.html', function (response, status, xhr) {
@@ -133,14 +131,27 @@ var CardView = (function () {
 
             _this.renderView('cardIndexContent', document.querySelector('[data-key="content_script"]').innerText, {}, document.querySelector('[data-key=content]'));
             _this.show(document.querySelector('[data-name=card-list]'));
-            _this.renderView('cardListTemplate', document.querySelector('[data-card-list-view]').innerText, _data, '[data-name=card-items]');
-            document.querySelector('[data-name="edit_card"]').addEventListener('click', function (event) {
-                var cardObject = {
-                    card_name: $(event.target).data('card-name'),
-                    dimension: $(event.target).data('dimension')
-                }
-                this.initializeDesign(cardObject);
+
+
+            $('[data-key=card_list]').load('./modules/cards/view/card-list.html', function (response, status, xhr) {
+                this.renderView('cardListTemplate', document.querySelector('[data-key=card_list]').innerText, _data, '[data-name=card-items]');
+                this.applyEditCardEvent();
             }.bind(_this));
+
+        },
+
+
+
+        applyEditCardEvent: function () {
+            document.querySelectorAll('[data-name="edit_card"]').forEach(function (value) {
+                value.addEventListener('click', function (event) {
+                    var cardObject = {
+                        card_name: $(event.target).data('card-name'),
+                        dimension: $(event.target).data('dimension')
+                    }
+                    this.initializeDesign(cardObject);
+                }.bind(this));
+            }.bind(this));
         },
 
         initializeHeader: function (response, status, xhr) {

@@ -38,40 +38,10 @@
   <link href="./styles/offcanvas.css" rel="stylesheet" />
   <link href="./styles/style.css" rel="stylesheet" />
 
-  <script type="text/html" data-card-list-view>
-    <div class="col-3">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">${card_name}</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title"><small class="text-muted">${dimention}</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Created at: <h6>${created_at}</h6>
-            </li>
-          </ul>
-          <button data-card-name="${card_name}" data-dimension="${dimention}" data-name="edit_card" class="btn btn-lg btn-block btn-primary">Edit</button>
-        </div>
-      </div>
-    </div>
+  <script type="text/html" data-key="card_list">
   </script>
 
   <script type="text/html" data-key="header_script">
-
-  </script>
-  <script type="text/html" data-key="design_header">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a href="index.html" class="mr-4"><i class="fa fa-arrow-left"></i></a>
-        <a class="navbar-brand mr-auto mr-lg-0" href="#">Card Editor</a>
-        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav px-3 ml-auto">
-
-            </ul>
-        </div>
-    </nav>
   </script>
 
   <script type="text/html" data-key="header_info_script">
@@ -110,18 +80,12 @@
     integrity="sha256-tzYSKRkV1Ga9YrVBiNHG44eEQyRcwtNrqOMh2+CTlec=" crossorigin="anonymous"></script>
 
   <script src="./core/constants.js"></script>
+  <script src="./modules/main.js"></script>
 
   <script src="./modules/cards/view/cardView.js"></script>
   <script src="./modules/cards/controller/cardController.js"></script>
   <script src="./modules/cards/modal/cardModal.js"></script>
   <script src="./modules/cards/card.module.js"></script>
-
-  <script src="./modules/core/utils.js"></script>
-  <script src="./modules/design/view/designView.js"></script>
-  <script src="./modules/design/controller/designController.js"></script>
-  <script src="./modules/design/model/designModal.js"></script>
-  <script src="./modules/design/design.module.js"></script>
-
 </body>
 
 </html>

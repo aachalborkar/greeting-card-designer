@@ -22,6 +22,9 @@ var DesignView = (function () {
         },
 
         initializeDesign: function (event) {
+
+            document.querySelector('[data-key="card_count"]').innerHTML = '';
+
             this.loadStyles();
 
             if (!isHeaderLoaded) {
